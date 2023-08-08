@@ -1,7 +1,7 @@
 # Проект «Большое путешествие»
 
-* Студент: [Михаил Ефремов](https://up.htmlacademy.ru/ecmascript/21/user/1074287).
-* Наставник: `Неизвестно`.
+- Студент: [Михаил Ефремов](https://up.htmlacademy.ru/ecmascript/21/user/1074287).
+- Наставник: [Сергей Андреев](https://htmlacademy.ru/profile/id812127).
 
 ---
 
