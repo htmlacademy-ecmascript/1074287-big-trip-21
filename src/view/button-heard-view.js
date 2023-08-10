@@ -1,13 +1,12 @@
 import { createElement } from '../render.js';
 
-function failedLoadData() {
-  return `
-  <p class="trip-events__msg">Failed to load latest route information</p>`;
+function createButtonHeardTemplate() {
+  return '<button class="trip-main__event-add-btn  btn  btn--big  btn--yellow">New event<button>';
 }
 
-export default class FailedLoadData {
+export default class ButtonHeardView {
   getTemplate() {
-    return failedLoadData();
+    return createButtonHeardTemplate();
   }
 
   getElement() {

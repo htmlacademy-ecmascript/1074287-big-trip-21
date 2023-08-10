@@ -1,13 +1,12 @@
 import { createElement } from '../render.js';
 
-function addNewPoint() {
-  return `
-  <button class="trip-main__event-add-btn  btn  btn--big  btn--yellow" type="button" disabled>New event</button>`;
+function createTripListTemplate() {
+  return '<ul class="trip-events__list"></ul>';
 }
 
-export default class NewPoint {
+export default class TripListView {
   getTemplate() {
-    return addNewPoint();
+    return createTripListTemplate();
   }
 
   getElement() {
