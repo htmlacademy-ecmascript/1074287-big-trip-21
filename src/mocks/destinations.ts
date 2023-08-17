@@ -25,4 +25,4 @@ const mockDestination = (name: string): Destionation => ({
 	pictures: Array.from({ length: getRandomInteger(1, 5) }, () => mockPicture(name)),
 });
 
-export const mockDestination = () => CITIES.map(mockDestination);
+export const mockDestinations = () => CITIES.map(mockDestination);

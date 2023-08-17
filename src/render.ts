@@ -1,5 +1,5 @@
 import { electron } from 'webpack';
-import type AbstractView from './view/_abstract';
+import type AbstractView from './views/_abstract';
 
 const RenderPosition = {
 	BEFOREBEGIN: 'beforebegin',

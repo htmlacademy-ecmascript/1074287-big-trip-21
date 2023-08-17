@@ -1,47 +1,49 @@
 import { render } from '../render';
-import SortView from '../view/sort-view';
-import EditView from '../view/edit-view';
-import EntryPointView from '../view/entry-point-view';
-import TripListView from '../view/trip-list-view';
-import TripItemView from '../view/trip-item';
+import TripListView from '../views/trip-list-view';
+import TripItemView from '../views/trip-item';
+import PointPresenter from './point';
+import { DestinationModel, OffersModel, PointsModel } from '../models';
 
 interface TripsPresenterProps {
 	container: HTMLElement;
+	pointsModel: PointsModel;
+	offersModel: OffersModel;
+	destinationsModel: DestinationModel;
 }
 
 export default class BoardPresenter {
+	#pointsModel: PointsModel | null = null;
+	#offersModel: OffersModel | null = null;
+	#destinationsModel: DestinationModel | null = null;
+
 	#container: HTMLElement | null = null;
 	#list = new TripListView();
-	#items: TripItemView[] = [];
+	#points: PointPresenter[] = [];
 
-	constructor({ container }: TripsPresenterProps) {
+	constructor({ container, pointsModel, offersModel, destinationsModel }: TripsPresenterProps) {
 		this.#container = container;
+		this.#pointsModel = pointsModel;
+		this.#offersModel = offersModel;
+		this.#destinationsModel = destinationsModel;
+
 		render(this.#list, this.#container);
 
-		this.#showEditExample();
+		this.#renderInitial();
 
-		for (let i = 0; i < 3; i++) {
-			this.#showItemExample();
-		}
+		this.#points[0].switchToEdit();
 	}
 
-	#createItem() {
-		const item = new TripItemView();
-		this.#items.push(item);
-		render(item, this.#list.element);
-
-		return item;
-	}
-
-	#showEditExample() {
-		const wrapper = this.#createItem();
-		const form = new EditView();
-		render(form, wrapper.element);
-	}
-
-	#showItemExample() {
-		const wrapper = this.#createItem();
-		const event = new EntryPointView();
-		render(event, wrapper.element);
+	#renderInitial() {
+		const points = this.#pointsModel!.points;
+		this.#points = points.map(
+			(point) =>
+				new PointPresenter({
+					point,
+					container: this.#list.element,
+					pointsModel: this.#pointsModel!,
+					offersModel: this.#offersModel!,
+					destinationsModel: this.#destinationsModel!,
+				})
+		);
 	}
 }
