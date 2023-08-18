@@ -22,7 +22,7 @@ export default class PointPresenter {
 
 	#container: HTMLElement | null = null;
 	#item = new TripItemView();
-	#content: EntryPointView | EditView | null = null;
+	#content: EditEventView | EventView | null = null;
 
 	constructor({ container, pointsModel, offersModel, destinationsModel, point }: PointPresenterProps) {
 		this.#container = container;
@@ -44,7 +44,7 @@ export default class PointPresenter {
 			getDestinations: this.#destinationsModel!.getById.bind(this.#destinationsModel!), // сделать функцию на поиск введенного города
 			getOffers: (type: PointType) => this.#offersModel!.getByType(type)?.offers || [],
 		});
-		render(this.#content, this.#item.element);
+		render(this.#content!, this.#item.element);
 	}
 
 	#renderInfo() {

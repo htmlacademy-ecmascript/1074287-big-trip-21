@@ -4,7 +4,7 @@ function createTripListTemplate() {
 	return '<ul class="trip-events__list"></ul>';
 }
 
-export default class TripListView extends AbstractView<HTMLLIElement> {
+export default class TripListView extends AbstractView<HTMLUListElement> {
 	constructor() {
 		super();
 	}

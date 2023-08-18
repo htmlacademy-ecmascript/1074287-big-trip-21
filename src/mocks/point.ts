@@ -19,7 +19,7 @@ function getDates() {
 export const mockPoint = (destination: Point['destination'], offers: Point['offers'], type: Point['type']): Point => ({
 	id: crypto.randomUUID(),
 	basePrice: getRandomInteger(50, 2000),
-	...getDates,
+	...getDates(),
 	destination,
 	isFavorite: getRandomBoolean(),
 	offers,

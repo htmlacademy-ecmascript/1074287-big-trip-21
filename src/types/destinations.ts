@@ -7,7 +7,7 @@ interface Destionation {
 	id: string;
 	description: string;
 	name: string;
-	pictures: [Picture];
+	pictures: Picture[];
 }
 
 export type { Destionation, Picture };

@@ -9,9 +9,8 @@ const enum Description {
 
 const MESSAGES = ['Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras aliquet varius magna, non porta ligula feugiat eget.'];
 
-const mockDescription = () => {
+const mockDescription = () =>
 	Array.from({ length: getRandomInteger(Description.MAX - Description.MIN) }, () => getRandomElement(MESSAGES)).join(' ');
-};
 
 const mockPicture = (city: string): Picture => ({
 	src: `https://loremflickr.com/248/152/${city}?random=${getRandomInteger()}`,
