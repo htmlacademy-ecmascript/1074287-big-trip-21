@@ -48,7 +48,7 @@ function markUp({ point, getDestinations, getOffers }: EditEventViewProps) {
 					destination?.name || ''
 				}" list="destination-list-1">
         <datalist id="destination-list-1">
-          ${CITIES.map((city) => `<option value="${city}"></option>`).join('')}
+        ${CITIES.map((city) => `<option value="${city}"></option>`).join('')}
         </datalist>
       </div>
 
@@ -95,7 +95,7 @@ function markUp({ point, getDestinations, getOffers }: EditEventViewProps) {
         `
 					)
 					.join('')}
-          
+
         </div>
       </section>
     </section>

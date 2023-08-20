@@ -1,6 +1,6 @@
 const enum Default {
 	Min = 0,
-	Max = 100,
+	Max = 5,
 }
 
 function getRandomInteger(min: number = Default.Min, max: number = Default.Max) {
