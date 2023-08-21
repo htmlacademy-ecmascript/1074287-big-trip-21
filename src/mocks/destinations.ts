@@ -1,6 +1,6 @@
 import { CITIES } from '../constants';
 import type { Picture, Destionation } from '../types/destinations';
-import { getRandomElement, getRandomInteger, getRandomBoolean } from '../utils/random';
+import { getRandomElement, getRandomInteger } from '../utils/random';
 
 const enum Description {
 	MIN = 1,

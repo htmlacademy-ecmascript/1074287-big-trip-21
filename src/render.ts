@@ -1,12 +1,4 @@
-import { electron } from 'webpack';
 import type AbstractView from './views/_abstract';
-
-const RenderPosition = {
-	BEFOREBEGIN: 'beforebegin',
-	AFTERBEGIN: 'afterbegin',
-	BEFOREEND: 'beforeend',
-	AFTEREND: 'afterend',
-};
 
 /**
  *

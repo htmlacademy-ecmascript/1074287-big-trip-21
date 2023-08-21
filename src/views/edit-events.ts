@@ -83,7 +83,7 @@ function markUp({ point, getDestinations, getOffers }: EditEventViewProps) {
         ${offers
 					.map(
 						({ title, price, id }) => `<div class="event__offer-selector">
-        <input class="event__offer-checkbox  visually-hidden" id="event-offer-luggage-${id}" type="checkbox" name="event-offer-luggage" ${
+<input class="event__offer-checkbox  visually-hidden" id="event-offer-luggage-${id}" type="checkbox" name="event-offer-luggage" ${
 							point.offers.includes(id) ? 'checked' : ''
 						}>
         <label class="event__offer-label" for="event-offer-luggage-${id}">

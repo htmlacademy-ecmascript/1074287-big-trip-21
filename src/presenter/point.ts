@@ -1,8 +1,6 @@
 import type { OffersModel, PointsModel, DestinationModel } from '../models';
 import { render } from '../render';
 import { Point, PointType } from '../types/point';
-import EditView from '../views/edit-view';
-import EntryPointView from '../views/entry-point-view';
 import TripItemView from '../views/trip-item';
 import EditEventView from '../views/edit-events';
 import EventView from '../views/event';
