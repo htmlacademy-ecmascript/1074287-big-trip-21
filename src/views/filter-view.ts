@@ -26,6 +26,7 @@ export default class FilterView extends AbstractView<HTMLFormElement> {
 	constructor() {
 		super();
 	}
+
 	get template() {
 		return createFilterTemplate();
 	}

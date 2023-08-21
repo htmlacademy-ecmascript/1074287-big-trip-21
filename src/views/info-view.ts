@@ -16,6 +16,7 @@ export default class InfoView extends AbstractView<HTMLElement> {
 	constructor() {
 		super();
 	}
+
 	get template() {
 		return createInfoTemplate();
 	}

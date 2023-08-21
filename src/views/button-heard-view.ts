@@ -1,4 +1,3 @@
-import { createElement } from '../render';
 import AbstractView from './_abstract';
 
 function createButtonHeardTemplate() {

@@ -44,6 +44,7 @@ export default class EntryPointView extends AbstractView<HTMLLIElement> {
 	constructor() {
 		super();
 	}
+
 	get template() {
 		return createEntryPointTemplate();
 	}
