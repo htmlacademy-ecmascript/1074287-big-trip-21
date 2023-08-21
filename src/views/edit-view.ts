@@ -1,7 +1,6 @@
-import { createElement } from '../render.js';
-
+import AbstractView from './_abstract';
 function createTaskEditTemplate() {
-  return `<li class="trip-events__item">
+	return `<li class="trip-events__item">
       <form class="event event--edit" action="#" method="post">
         <header class="event__header">
           <div class="event__type-wrapper">
@@ -138,20 +137,12 @@ function createTaskEditTemplate() {
     </li>`;
 }
 
-export default class EditView {
-  getTemplate() {
-    return createTaskEditTemplate();
-  }
+export default class EditView extends AbstractView<HTMLLIElement> {
+	constructor() {
+		super();
+	}
 
-  getElement() {
-    if (!this.element) {
-      this.element = createElement(this.getTemplate());
-    }
-
-    return this.element;
-  }
-
-  removeElement() {
-    this.element = null;
-  }
+	get template() {
+		return createTaskEditTemplate();
+	}
 }

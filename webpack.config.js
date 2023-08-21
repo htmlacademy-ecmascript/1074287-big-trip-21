@@ -1,46 +1,58 @@
-const path = require("path");
-const CopyPlugin = require("copy-webpack-plugin");
-const HtmlPlugin = require("html-webpack-plugin");
+import { dirname, resolve } from 'path';
+import CopyPlugin from 'copy-webpack-plugin';
+import HtmlPlugin from 'html-webpack-plugin';
+import { fileURLToPath } from 'url';
 
-module.exports = {
-  entry: "./src/main.js",
-  output: {
-    filename: "bundle.[contenthash].js",
-    path: path.resolve(__dirname, "build"),
-    clean: true,
-  },
-  devtool: "source-map",
-  plugins: [
-    new HtmlPlugin({
-      template: "public/index.html",
-    }),
-    new CopyPlugin({
-      patterns: [
-        {
-          from: "public",
-          globOptions: {
-            ignore: ["**/index.html"],
-          },
-        },
-      ],
-    }),
-  ],
-  module: {
-    rules: [
-      {
-        test: /\.js$/,
-        exclude: /(node_modules)/,
-        use: {
-          loader: "babel-loader",
-          options: {
-            presets: ["@babel/preset-env"],
-          },
-        },
-      },
-      {
-        test: /\.css$/i,
-        use: ["style-loader", "css-loader"],
-      },
-    ],
-  },
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+export default {
+	entry: './src/main.ts',
+	output: {
+		filename: 'bundle.[contenthash].js',
+		path: resolve(__dirname, 'build'),
+		clean: true,
+	},
+	devtool: 'source-map',
+	plugins: [
+		new HtmlPlugin({
+			template: 'public/index.html',
+		}),
+		new CopyPlugin({
+			patterns: [
+				{
+					from: 'public',
+					globOptions: {
+						ignore: ['**/index.html'],
+					},
+				},
+			],
+		}),
+	],
+	resolve: {
+		extensions: ['.tsx', '.ts', '.js'],
+	},
+	module: {
+		rules: [
+			{
+				test: /\.js$/,
+				exclude: /(node_modules)/,
+				use: {
+					loader: 'babel-loader',
+					options: {
+						presets: ['@babel/preset-env'],
+					},
+				},
+			},
+			{
+				test: /\.tsx?$/,
+				use: 'ts-loader',
+				exclude: /node_modules/,
+			},
+			{
+				test: /\.css$/i,
+				use: ['style-loader', 'css-loader'],
+			},
+		],
+	},
 };

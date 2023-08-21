@@ -1,7 +1,7 @@
-import { createElement } from '../render.js';
+import AbstractView from './_abstract';
 
 function createEntryPointTemplate() {
-  return `<li class="trip-events__item">
+	return `<li class="trip-events__item">
       <div class="event">
         <time class="event__date" datetime="2019-03-18">MAR 18</time>
         <div class="event__type">
@@ -40,20 +40,12 @@ function createEntryPointTemplate() {
     </li>`;
 }
 
-export default class EntryPointView {
-  getTemplate() {
-    return createEntryPointTemplate();
-  }
+export default class EntryPointView extends AbstractView<HTMLLIElement> {
+	constructor() {
+		super();
+	}
 
-  getElement() {
-    if (!this.element) {
-      this.element = createElement(this.getTemplate());
-    }
-
-    return this.element;
-  }
-
-  removeElement() {
-    this.element = null;
-  }
+	get template() {
+		return createEntryPointTemplate();
+	}
 }
