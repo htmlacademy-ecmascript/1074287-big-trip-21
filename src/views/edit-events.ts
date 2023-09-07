@@ -117,9 +117,35 @@ export default class EditEventView extends AbstractView<HTMLFormElement> {
 	constructor(props: EditEventViewProps) {
 		super();
 		this.#props = props;
+		this.setEventTypeHandlers();
 	}
 
 	get template() {
 		return markUp(this.#props!);
+	}
+
+	private setEventTypeHandlers() {
+		const eventTypeList = this.element.querySelector('.event__type-list');
+		if (eventTypeList) {
+			eventTypeList.addEventListener('change', this.handleEventTypeChange.bind(this));
+		}
+	}
+
+	private handleEventTypeChange(event: Event) {
+		const eventTypeInput = event.target as HTMLInputElement;
+		if (eventTypeInput && eventTypeInput.tagName === 'INPUT' && eventTypeInput.name === 'event-type') {
+			const eventType = eventTypeInput.value;
+			const eventTypeIcon = this.element.querySelector('.event__type-icon') as HTMLImageElement;
+			const eventTypeOutput = this.element.querySelector('.event__label.event__type-output');
+			if (this.#props === null) {
+				return;
+			}
+			if (eventTypeIcon && eventTypeOutput) {
+				eventTypeIcon.src = `img/icons/${eventType}.png`;
+				eventTypeIcon.alt = `${eventType} icon`;
+				eventTypeOutput.textContent = eventType;
+				this.#props.point.type = eventType as Point['type'];
+			}
+		}
 	}
 }
