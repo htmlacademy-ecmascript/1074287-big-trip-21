@@ -31,6 +31,15 @@ export default class PointPresenter {
 
 		this.#renderInfo();
 		render(this.#item, this.#container);
+
+		const rollupButton = this.#item.element.querySelector('.event__rollup-btn');
+		rollupButton?.addEventListener('click', () => this.switchToEdit());
+
+		document.addEventListener('keydown', (event) => {
+			if (event.key === 'Escape' && this.#content instanceof EditEventView) {
+				this.switchToClose();
+			}
+		});
 	}
 
 	switchToEdit() {
@@ -43,6 +52,12 @@ export default class PointPresenter {
 			getOffers: (type: PointType) => this.#offersModel!.getByType(type)?.offers || [],
 		});
 		render(this.#content!, this.#item.element);
+	}
+
+	switchToClose() {
+		if (this.#content) {
+			this.#content.element.style.display = 'none';
+		}
 	}
 
 	#renderInfo() {

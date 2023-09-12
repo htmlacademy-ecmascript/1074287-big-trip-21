@@ -29,7 +29,7 @@ export default class BoardPresenter {
 
 		this.#renderInitial();
 
-		this.#points[0].switchToEdit();
+		// this.#points[0].switchToEdit();
 	}
 
 	#renderInitial() {
