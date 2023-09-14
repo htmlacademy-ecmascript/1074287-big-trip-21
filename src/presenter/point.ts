@@ -58,18 +58,6 @@ export default class PointPresenter {
 		render(this.#content!, this.#item.element);
 	}
 
-	switchToClose() {
-		const oldContent = this.#content!;
-		const newContent = new EventView({
-			point: this.#point!,
-			city: destination?.name || '',
-			offers: offer?.offers.filter(({ id }) => point.offers.includes(id)) || [],
-		});
-		replace(newContent, oldContent);
-		oldContent.removeElement();
-		this.#content = newContent;
-	}
-
 	#renderInfo() {
 		const point = this.#point!;
 		const destination = this.#destinationsModel!.getById(point.destination);
@@ -81,5 +69,20 @@ export default class PointPresenter {
 			offers: offer?.offers.filter(({ id }) => point.offers.includes(id)) || [],
 		});
 		render(this.#content, this.#item.element);
+	}
+
+	switchToClose() {
+		const point = this.#point!;
+		const destination = this.#destinationsModel!.getById(point.destination);
+		const offer = this.#offersModel!.getByType(point.type);
+		const oldContent = this.#content!;
+		const newContent = new EventView({
+			point: this.#point!,
+			city: destination?.name || '',
+			offers: offer?.offers.filter(({ id }) => point.offers.includes(id)) || [],
+		});
+		replace(newContent, oldContent);
+		oldContent.removeElement();
+		this.#content = newContent;
 	}
 }
