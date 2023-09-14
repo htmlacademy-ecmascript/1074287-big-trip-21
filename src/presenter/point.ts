@@ -36,6 +36,9 @@ export default class PointPresenter {
 		const rollupButton = this.#item.element.querySelector('.event__rollup-btn');
 		rollupButton?.addEventListener('click', () => this.switchToEdit());
 
+		const closeButton = this.#content!.element.querySelector('.event__rollup-btn');
+		closeButton?.addEventListener('click', () => this.switchToClose());
+
 		document.addEventListener('keydown', (event) => {
 			if (event.key === 'Escape' && this.#content instanceof EditEventView) {
 				this.switchToClose();
@@ -55,7 +58,17 @@ export default class PointPresenter {
 		render(this.#content!, this.#item.element);
 	}
 
-	switchToClose() {}
+	switchToClose() {
+		const oldContent = this.#content!;
+		const newContent = new EventView({
+			point: this.#point!,
+			city: destination?.name || '',
+			offers: offer?.offers.filter(({ id }) => point.offers.includes(id)) || [],
+		});
+		replace(newContent, oldContent);
+		oldContent.removeElement();
+		this.#content = newContent;
+	}
 
 	#renderInfo() {
 		const point = this.#point!;
