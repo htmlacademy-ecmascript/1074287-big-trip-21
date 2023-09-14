@@ -4,6 +4,7 @@ import { Point, PointType } from '../types/point';
 import TripItemView from '../views/trip-item';
 import EditEventView from '../views/edit-events';
 import EventView from '../views/event';
+import { replace } from '../framework/render';
 interface PointPresenterProps {
 	point: Point;
 	container: HTMLUListElement;
@@ -54,11 +55,7 @@ export default class PointPresenter {
 		render(this.#content!, this.#item.element);
 	}
 
-	switchToClose() {
-		if (this.#content) {
-			this.#content.element.style.display = 'none';
-		}
-	}
+	switchToClose() {}
 
 	#renderInfo() {
 		const point = this.#point!;
