@@ -1,4 +1,4 @@
-import type AbstractView from './views/_abstract';
+import AbstractView from './framework/view/abstract-view';
 
 /**
  *

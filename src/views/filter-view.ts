@@ -1,4 +1,4 @@
-import AbstractView from './_abstract';
+import AbstractView from '../framework/view/abstract-view';
 
 function createFilterTemplate() {
 	return `<form class="trip-filters" action="#" method="get">

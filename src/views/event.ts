@@ -1,7 +1,7 @@
 import { markUpEvent, type MarkUpEventProps } from '../templates/event';
 import { OfferItem } from '../types/offer';
 import type { Point } from '../types/point';
-import AbstractView from './_abstract';
+import AbstractView from '../framework/view/abstract-view';
 
 interface EventViewProps {
 	point: Point;

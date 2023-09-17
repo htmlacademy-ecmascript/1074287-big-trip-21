@@ -31,17 +31,22 @@ export default class PointPresenter {
 		this.#point = point;
 
 		this.#renderInfo();
+		this.#updateToggleButton();
 		render(this.#item, this.#container);
+		// document.addEventListener('keydown', (event) => {
+		// 	if (event.key === 'Escape' && this.#content instanceof EditEventView) {
+		// 		this.switchToClose();
+		// 	}
+		// });
+	}
 
-		const rollupButton = this.#item.element.querySelector('.event__rollup-btn');
-		rollupButton?.addEventListener('click', () => this.switchToEdit());
-
-		const closeButton = this.#content!.element.querySelector('.event__rollup-btn');
-		closeButton?.addEventListener('click', () => this.switchToClose());
-
-		document.addEventListener('keydown', (event) => {
-			if (event.key === 'Escape' && this.#content instanceof EditEventView) {
+	#updateToggleButton() {
+		const toggleButton = this.#item.element.querySelector('.event__rollup-btn');
+		toggleButton?.addEventListener('click', () => {
+			if (this.#content instanceof EditEventView) {
 				this.switchToClose();
+			} else {
+				this.switchToEdit();
 			}
 		});
 	}
@@ -56,6 +61,7 @@ export default class PointPresenter {
 			getOffers: (type: PointType) => this.#offersModel!.getByType(type)?.offers || [],
 		});
 		render(this.#content!, this.#item.element);
+		this.#updateToggleButton();
 	}
 
 	#renderInfo() {
@@ -84,5 +90,6 @@ export default class PointPresenter {
 		replace(newContent, oldContent);
 		oldContent.removeElement();
 		this.#content = newContent;
+		this.#updateToggleButton();
 	}
 }

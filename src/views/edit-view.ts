@@ -1,4 +1,4 @@
-import AbstractView from './_abstract';
+import AbstractView from '../framework/view/abstract-view';
 function createTaskEditTemplate() {
 	return `<li class="trip-events__item">
       <form class="event event--edit" action="#" method="post">

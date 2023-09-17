@@ -1,4 +1,4 @@
-import AbstractView from './_abstract';
+import AbstractView from '../framework/view/abstract-view';
 
 const MARK_UP = '<li class="trip-events__item"></li>';
 

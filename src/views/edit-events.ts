@@ -3,7 +3,7 @@ import { Destionation } from '../types/destinations';
 import { OfferItem } from '../types/offer';
 import { Point } from '../types/point';
 import { capitilize } from '../utils';
-import AbstractView from './_abstract';
+import AbstractView from '../framework/view/abstract-view';
 
 interface EditEventViewProps {
 	point: Point;

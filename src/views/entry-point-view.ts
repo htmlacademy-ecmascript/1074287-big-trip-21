@@ -1,4 +1,4 @@
-import AbstractView from './_abstract';
+import AbstractView from '../framework/view/abstract-view';
 
 function createEntryPointTemplate() {
 	return `<li class="trip-events__item">
