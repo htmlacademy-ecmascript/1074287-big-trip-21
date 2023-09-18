@@ -1,4 +1,4 @@
-import AbstractView from './_abstract';
+import AbstractView from '../framework/view/abstract-view';
 
 function createTripListTemplate() {
 	return '<ul class="trip-events__list"></ul>';

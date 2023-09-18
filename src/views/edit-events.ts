@@ -3,7 +3,7 @@ import { Destionation } from '../types/destinations';
 import { OfferItem } from '../types/offer';
 import { Point } from '../types/point';
 import { capitilize } from '../utils';
-import AbstractView from './_abstract';
+import AbstractView from '../framework/view/abstract-view';
 
 interface EditEventViewProps {
 	point: Point;
@@ -73,7 +73,10 @@ function markUp({ point, getDestinations, getOffers }: EditEventViewProps) {
       </div>
 
       <button class="event__save-btn  btn  btn--blue" type="submit">Save</button>
-      <button class="event__reset-btn" type="reset">Cancel</button>
+                  <button class="event__reset-btn" type="reset">Delete</button>
+                  <button class="event__rollup-btn" type="button">
+                    <span class="visually-hidden">Open event</span>
+                  </button>
     </header>
     <section class="event__details">
       <section class="event__section  event__section--offers">
@@ -117,9 +120,35 @@ export default class EditEventView extends AbstractView<HTMLFormElement> {
 	constructor(props: EditEventViewProps) {
 		super();
 		this.#props = props;
+		this.setEventTypeHandlers();
 	}
 
 	get template() {
 		return markUp(this.#props!);
+	}
+
+	private setEventTypeHandlers() {
+		const eventTypeList = this.element.querySelector('.event__type-list');
+		if (eventTypeList) {
+			eventTypeList.addEventListener('change', this.handleEventTypeChange.bind(this));
+		}
+	}
+
+	private handleEventTypeChange(event: Event) {
+		const eventTypeInput = event.target as HTMLInputElement;
+		if (eventTypeInput && eventTypeInput.tagName === 'INPUT' && eventTypeInput.name === 'event-type') {
+			const eventType = eventTypeInput.value;
+			const eventTypeIcon = this.element.querySelector('.event__type-icon') as HTMLImageElement;
+			const eventTypeOutput = this.element.querySelector('.event__label.event__type-output');
+			if (this.#props === null) {
+				return;
+			}
+			if (eventTypeIcon && eventTypeOutput) {
+				eventTypeIcon.src = `img/icons/${eventType}.png`;
+				eventTypeIcon.alt = `${eventType} icon`;
+				eventTypeOutput.textContent = eventType;
+				this.#props.point.type = eventType as Point['type'];
+			}
+		}
 	}
 }
