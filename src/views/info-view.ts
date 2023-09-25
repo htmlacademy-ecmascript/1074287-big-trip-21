@@ -1,5 +1,5 @@
 import AbstractView from '../framework/view/abstract-view';
-function createInfoTemplate() {
+function createInfoTemplate(total: number) {
 	return `<section class="trip-main__trip-info  trip-info">
       <div class="trip-info__main">
         <h1 class="trip-info__title">Amsterdam &mdash; Chamonix &mdash; Geneva</h1>
@@ -7,17 +7,20 @@ function createInfoTemplate() {
       </div>
       <p class="trip-info__cost">
         Total: &euro;&nbsp;
-        <span class="trip-info__cost-value">1230</span>
+        <span class="trip-info__cost-value">${total}</span>
       </p>
     </section>`;
 }
 
 export default class InfoView extends AbstractView<HTMLElement> {
-	constructor() {
+	#total: number;
+
+	constructor(total: number) {
 		super();
+		this.#total = total;
 	}
 
 	get template() {
-		return createInfoTemplate();
+		return createInfoTemplate(this.#total);
 	}
 }

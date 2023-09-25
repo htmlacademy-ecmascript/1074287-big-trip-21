@@ -7,6 +7,7 @@ interface OfferItem {
 }
 
 interface Offer {
+	id: string;
 	type: PointType;
 	offers: OfferItem[];
 }
