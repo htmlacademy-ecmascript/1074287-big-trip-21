@@ -1,10 +1,11 @@
-import type { OffersModel, PointsModel, DestinationModel } from '../models';
+import { OffersModel, PointsModel, DestinationModel } from '../models';
 import { render } from '../render';
 import { Point, PointType } from '../types/point';
 import TripItemView from '../views/trip-item';
 import EditEventView from '../views/edit-events';
 import EventView from '../views/event';
 import { replace } from '../framework/render';
+
 interface PointPresenterProps {
 	point: Point;
 	container: HTMLUListElement;
@@ -29,15 +30,14 @@ export default class PointPresenter {
 		this.#offersModel = offersModel;
 		this.#destinationsModel = destinationsModel;
 		this.#point = point;
-
 		this.#renderInfo();
 		this.#updateToggleButton();
 		render(this.#item, this.#container);
-		// document.addEventListener('keydown', (event) => {
-		// 	if (event.key === 'Escape' && this.#content instanceof EditEventView) {
-		// 		this.switchToClose();
-		// 	}
-		// });
+		document.addEventListener('keydown', (event) => {
+			if (event.key === 'Escape' && this.#content instanceof EditEventView) {
+				this.switchToClose();
+			}
+		});
 	}
 
 	#updateToggleButton() {

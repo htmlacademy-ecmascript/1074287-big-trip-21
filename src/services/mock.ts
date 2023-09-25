@@ -3,6 +3,7 @@ import { mockOffers } from '../mocks/offer';
 import { mockPoint } from '../mocks/point';
 import type { Point } from '../types/point';
 import { getRandomElement, getRandomInteger } from '../utils/random';
+import axios from 'axios';
 
 export default class MockService {
 	#destinations = mockDestinations();
@@ -13,16 +14,31 @@ export default class MockService {
 		this.#points = this.#generatePoints();
 	}
 
-	getDestinations() {
-		return this.#destinations;
+	async getDestinations() {
+		try {
+			const responce = await axios.post('https://21.objects.pages.academy/spec/big-trip#get-/big-trip/destinations');
+			return responce.data;
+		} catch (error) {
+			return [];
+		}
 	}
 
-	getPoints() {
-		return this.#points;
+	async getPoints() {
+		try {
+			const responce = await axios.post('https://21.objects.pages.academy/big-trip/points');
+			return responce.data;
+		} catch (error) {
+			return [];
+		}
 	}
 
-	getOffers() {
-		return this.#offers;
+	async getOffers() {
+		try {
+			const responce = await axios.post('https://21.objects.pages.academy/spec/big-trip#get-/big-trip/points');
+			return responce.data;
+		} catch (error) {
+			return [];
+		}
 	}
 
 	#generatePoint = () => {

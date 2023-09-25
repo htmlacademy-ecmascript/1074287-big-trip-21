@@ -17,4 +17,8 @@ export default class PointsModel {
 	getById(id: string) {
 		return this.#points.find((point) => point.id === id);
 	}
+
+	getTotalBasePrice() {
+		return this.#points.reduce((total, point) => total + point.basePrice, 0);
+	}
 }

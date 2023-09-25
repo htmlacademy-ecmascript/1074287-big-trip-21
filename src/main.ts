@@ -10,7 +10,9 @@ const headerNode = document.querySelector('.page-header');
 const tripMainNode = document.querySelector('.trip-main');
 const tripFilterNode = document.querySelector('.trip-controls__filters');
 const tripEventNode = document.querySelector<HTMLDivElement>('.trip-events');
-
+const pointsModel = new PointsModel();
+const total = pointsModel.getTotalBasePrice();
+const infoView = new InfoView(total);
 const service = new MockService();
 const [pointsModel, destinationsModel, offersModel] = [PointsModel, DestinationModel, OffersModel].map((Model) => new Model(service)) as [
 	PointsModel,
